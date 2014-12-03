@@ -13,6 +13,8 @@
 @synthesize m_questions;
 @synthesize m_bShowSearchDetail;
 @synthesize m_currentIndex;
+@synthesize delegateExt;
+@synthesize m_numOfCorrect;
 -(id) initWithView : (UIView*) view DisplayRect : (CGRect) rect DataFile : (NSString*) filename
 {
     if (self = [super init])
@@ -22,6 +24,8 @@
         m_filename = filename;
         m_bShowSearchDetail = NO;
         m_currentIndex = 0;
+        m_numOfCorrect = 0;
+        m_bFinished = NO;
     }
     return  self;
 }
@@ -131,6 +135,9 @@
         [[m_questions objectAtIndex:m_currentIndex]setSelectExt:0];
         if ([[m_lbl_choice1 getTextExt] isEqualToString:m_str_answer])
         {
+            if (!m_bFinished) {
+                 ++m_numOfCorrect;
+            }
             [m_lbl_choice1 setRight];
         }
         else
@@ -146,6 +153,9 @@
         [[m_questions objectAtIndex:m_currentIndex]setSelectExt:1];
         if ([[m_lbl_choice2 getTextExt] isEqualToString:m_str_answer])
         {
+            if (!m_bFinished) {
+                ++m_numOfCorrect;
+            }
             [m_lbl_choice2 setRight];
         }
         else
@@ -161,6 +171,9 @@
         [[m_questions objectAtIndex:m_currentIndex]setSelectExt:2];
         if ([[m_lbl_choice3 getTextExt] isEqualToString:m_str_answer])
         {
+            if (!m_bFinished) {
+                ++m_numOfCorrect;
+            }
             [m_lbl_choice3 setRight];
         }
         else
@@ -176,6 +189,9 @@
         [[m_questions objectAtIndex:m_currentIndex]setSelectExt:3];
         if ([[m_lbl_choice4 getTextExt] isEqualToString:m_str_answer])
         {
+            if (!m_bFinished) {
+                ++m_numOfCorrect;
+            }
             [m_lbl_choice4 setRight];
         }
         else
@@ -204,7 +220,25 @@
         
     }
     
+    if(m_bFinished) return;
     
+    BOOL bFinished = YES;
+    for (NSUInteger i=0; i< [m_questions count]; ++i)
+    {
+        if([[m_questions objectAtIndex:i] m_selected]==-1)
+        {
+            bFinished = NO;
+            break;
+        }
+    }
+    if (bFinished)
+    {
+        m_bFinished = YES;
+        if (delegateExt != nil)
+        {
+            [delegateExt onResultReceive:[m_questions count]  correct: m_numOfCorrect :self];
+        }
+    }
     
 }
 - (void) updateQuestionView{
