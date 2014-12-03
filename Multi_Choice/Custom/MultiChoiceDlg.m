@@ -126,78 +126,76 @@
 }
 -(void) onLabelExtClick:(id)sender
 {
-    
-    if (m_lbl_choice2.m_IsSelected == NO &&
+    if (m_lbl_choice1.m_IsSelected == NO &&
+        m_lbl_choice2.m_IsSelected == NO &&
         m_lbl_choice3.m_IsSelected == NO &&
-        m_lbl_choice4.m_IsSelected == NO &&
-        [sender isEqual:m_lbl_choice1]) {
-       // NSLogExt(@"choice1");
-        [[m_questions objectAtIndex:m_currentIndex]setSelectExt:0];
-        if ([[m_lbl_choice1 getTextExt] isEqualToString:m_str_answer])
-        {
-            if (!m_bFinished) {
-                 ++m_numOfCorrect;
+        m_lbl_choice4.m_IsSelected == NO )
+    {
+        if ([sender isEqual:m_lbl_choice1]) {
+            // NSLogExt(@"choice1");
+            [[m_questions objectAtIndex:m_currentIndex]setSelectExt:0];
+            if ([[m_lbl_choice1 getTextExt] isEqualToString:m_str_answer])
+            {
+                if (!m_bFinished) {
+                    [[m_questions objectAtIndex:m_currentIndex] setCorrect:YES];
+                    NSLogExt(@"right1 %lu",m_numOfCorrect);
+                }
+                [m_lbl_choice1 setRight];
             }
-            [m_lbl_choice1 setRight];
-        }
-        else
-        {
-            [m_lbl_choice1 setWrong];
-        }
-    }
-    else if (m_lbl_choice1.m_IsSelected == NO &&
-             m_lbl_choice3.m_IsSelected == NO &&
-             m_lbl_choice4.m_IsSelected == NO &&
-             [sender isEqual:m_lbl_choice2]) {
-        //NSLogExt(@"choice2");
-        [[m_questions objectAtIndex:m_currentIndex]setSelectExt:1];
-        if ([[m_lbl_choice2 getTextExt] isEqualToString:m_str_answer])
-        {
-            if (!m_bFinished) {
-                ++m_numOfCorrect;
+            else
+            {
+                [m_lbl_choice1 setWrong];
             }
-            [m_lbl_choice2 setRight];
         }
-        else
-        {
-            [m_lbl_choice2 setWrong];
-        }
-    }
-    else if (m_lbl_choice1.m_IsSelected == NO &&
-             m_lbl_choice2.m_IsSelected == NO &&
-             m_lbl_choice4.m_IsSelected == NO &&
-             [sender isEqual:m_lbl_choice3]) {
-       // NSLogExt(@"choice3");
-        [[m_questions objectAtIndex:m_currentIndex]setSelectExt:2];
-        if ([[m_lbl_choice3 getTextExt] isEqualToString:m_str_answer])
-        {
-            if (!m_bFinished) {
-                ++m_numOfCorrect;
+        else if ([sender isEqual:m_lbl_choice2]) {
+            //NSLogExt(@"choice2");
+            [[m_questions objectAtIndex:m_currentIndex]setSelectExt:1];
+            if ([[m_lbl_choice2 getTextExt] isEqualToString:m_str_answer])
+            {
+                if (!m_bFinished) {
+                    [[m_questions objectAtIndex:m_currentIndex] setCorrect:YES];
+                    NSLogExt(@"right2 %lu",m_numOfCorrect);
+                }
+                [m_lbl_choice2 setRight];
             }
-            [m_lbl_choice3 setRight];
-        }
-        else
-        {
-            [m_lbl_choice3 setWrong];
-        }
-    }
-    else if (m_lbl_choice1.m_IsSelected == NO &&
-             m_lbl_choice2.m_IsSelected == NO &&
-             m_lbl_choice3.m_IsSelected == NO &&
-             [sender isEqual:m_lbl_choice4]) {
-      //  NSLogExt(@"choice4");
-        [[m_questions objectAtIndex:m_currentIndex]setSelectExt:3];
-        if ([[m_lbl_choice4 getTextExt] isEqualToString:m_str_answer])
-        {
-            if (!m_bFinished) {
-                ++m_numOfCorrect;
+            else
+            {
+                [m_lbl_choice2 setWrong];
             }
-            [m_lbl_choice4 setRight];
         }
-        else
-        {
-            [m_lbl_choice4 setWrong];
+        else if ([sender isEqual:m_lbl_choice3]) {
+            // NSLogExt(@"choice3");
+            [[m_questions objectAtIndex:m_currentIndex]setSelectExt:2];
+            if ([[m_lbl_choice3 getTextExt] isEqualToString:m_str_answer])
+            {
+                if (!m_bFinished) {
+                    [[m_questions objectAtIndex:m_currentIndex] setCorrect:YES];
+                    NSLogExt(@"right3 %lu",m_numOfCorrect);
+                }
+                [m_lbl_choice3 setRight];
+            }
+            else
+            {
+                [m_lbl_choice3 setWrong];
+            }
         }
+        else if ([sender isEqual:m_lbl_choice4]) {
+            //  NSLogExt(@"choice4");
+            [[m_questions objectAtIndex:m_currentIndex]setSelectExt:3];
+            if ([[m_lbl_choice4 getTextExt] isEqualToString:m_str_answer])
+            {
+                if (!m_bFinished) {
+                    [[m_questions objectAtIndex:m_currentIndex] setCorrect:YES];
+                    NSLogExt(@"right4 %lu",m_numOfCorrect);
+                }
+                [m_lbl_choice4 setRight];
+            }
+            else
+            {
+                [m_lbl_choice4 setWrong];
+            }
+        }
+
     }
     
     if ([[m_lbl_choice1 getTextExt]isEqualToString:m_str_answer]) {
@@ -234,6 +232,13 @@
     if (bFinished)
     {
         m_bFinished = YES;
+        m_numOfCorrect = 0;
+        for (NSUInteger i=0; i<[m_questions count]; ++i) {
+          if([[m_questions objectAtIndex:i] isCorrect] == YES)
+          {
+                 ++m_numOfCorrect;
+          }
+        }
         if (delegateExt != nil)
         {
             [delegateExt onResultReceive:[m_questions count]  correct: m_numOfCorrect :self];

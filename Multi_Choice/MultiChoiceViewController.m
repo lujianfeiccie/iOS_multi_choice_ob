@@ -106,7 +106,7 @@
     NSUInteger numOfCorrect =m_dlg.m_numOfCorrect;
     NSString* tmp = [NSString stringWithFormat:@"总数:%lu\n正确数:%lu\n正确率:%.0f%%",(unsigned long)total,(unsigned long)numOfCorrect,(float)numOfCorrect/(float)total*100];
     [m_dialog showDialogTitle:@"您的成绩" message:tmp confirm:@"知道了"];
-    [m_dialog release];
+    
 }
 
 -(void) onResultReceive:(NSUInteger) total correct:(NSUInteger) numOfCorrect : (id)sender
