@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#define GLOBAL_BGColor [UIColor colorWithRed:243.0/255.0 green:239.0/255.0 blue:236.0/255.0 alpha:100]
 
-#define GLOBAL_APP_ID 947269754
-//Test APP ID 284417350
-//MY   APP ID 947269754
 @interface AbstractViewController : UIViewController
-
+@property(nonatomic,strong) NSString* m_filename;
+@property(nonatomic,strong) NSString* m_title;
 @end

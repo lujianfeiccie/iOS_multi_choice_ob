@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AbstractViewController.h"
+#import "AbstractSearchViewController.h"
+#import "AbstractDetailViewController.h"
+#import "ViewControllerFactory.h"
 #import "ButtonUtil.h"
 #import "PlatformUtil.h"
 #import "NSLogExt.h"
@@ -19,6 +22,7 @@
 #import "VersionCheckTool.h"
 #import "XMLCalcHelper.h"
 #import "UINavigationControllerExt.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
      UIStoryboard *storyBoard;

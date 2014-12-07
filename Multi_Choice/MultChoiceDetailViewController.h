@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "AbstractViewController.h"
 #import "MultiChoiceDlg.h"
-@interface MultChoiceDetailViewController : AbstractViewController
+@interface MultChoiceDetailViewController : AbstractDetailViewController
 {
     AppDelegate* app;
     MultiChoiceDlg *m_dlg;
@@ -18,9 +18,7 @@
     IBOutlet UIButton *m_btn_prev;
     IBOutlet UIButton *m_btn_next;
 }
-@property(nonatomic,strong) NSMutableArray* m_array_detail;
-@property(nonatomic) NSInteger m_currentIndex;
-@property(nonatomic,strong) NSString* m_title;
+
 - (IBAction)onPrevClick:(id)sender;
 - (IBAction)onNextClick:(id)sender;
 @end
