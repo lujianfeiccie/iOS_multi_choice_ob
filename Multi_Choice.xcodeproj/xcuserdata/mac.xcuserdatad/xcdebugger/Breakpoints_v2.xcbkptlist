@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Multi_Choice/MultiChoiceViewController.m"
-            timestampString = "439308205.550439"
+            timestampString = "439615660.002543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-btnShowResultClick:"
             landmarkType = "5">
          </BreakpointContent>
