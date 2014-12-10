@@ -35,7 +35,7 @@
         
         if([m_filename isEqualToString:@"all"])
         {
-            [m_xmlHelper loadMultiple:4:
+            [m_xmlHelper loadMultiple:5:
              @"2013_07_short_answer",
              @"2012_07_short_answer",
              @"2011_07_short_answer",
@@ -45,7 +45,7 @@
         }
         else if([m_filename isEqualToString:@"all_word"])
         {
-            [m_xmlHelper loadMultiple:4:
+            [m_xmlHelper loadMultiple:5:
              @"2013_07_word",
              @"2012_07_word",
              @"2011_07_word",
